@@ -422,7 +422,7 @@ class DisplayObject implements IEventDispatcher implements IDisplayObject implem
 	private function set_alpha(value:Float):Float {
 		if (value != _alpha) {
 			_alpha = value;
-			invalidate();
+			invalidate(InvalidationFlag.STYLE, true);
 		}
 		return value;
 	}
