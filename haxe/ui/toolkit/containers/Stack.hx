@@ -34,6 +34,13 @@ class Stack extends Component {
 		r.sprite.alpha = 1;
 		return r;
 	}
+
+	public override function addChildAt(child:IDisplayObject, index:Int):IDisplayObject {
+		var r = super.addChildAt(child, index);
+	    r.visible = (index == _selectedIndex);
+		r.sprite.alpha = 1;
+		return r;
+	}
 	
 	//******************************************************************************************
 	// Getters/setters
