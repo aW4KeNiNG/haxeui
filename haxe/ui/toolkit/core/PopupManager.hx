@@ -166,7 +166,9 @@ class PopupManager {
 	}
 	
 	public function hidePopup(p:Popup, dispose:Bool = true):Void {
-		_modalPopups.remove(p);
+		if(!_modalPopups.remove(p))
+            return;
+
 		if (_modalPopups.length == 0)
 			Lib.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
 		
