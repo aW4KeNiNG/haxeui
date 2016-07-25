@@ -1,5 +1,6 @@
 package haxe.ui.toolkit.controls;
 
+import openfl.utils.ByteArray;
 import haxe.Http;
 import haxe.io.Bytes;
 import haxe.ui.toolkit.core.Component;
@@ -233,7 +234,12 @@ class Image extends Component implements IClonable<Image> {
 			#else
 				var r:Http = new Http(res);
 				r.onData = function(imageData) {
-					callback(BitmapData.loadFromHaxeBytes(Bytes.ofString(imageData)));
+                    var bytes = Bytes.ofString(imageData);
+                    #if legacy
+					callback(BitmapData.loadFromHaxeBytes(bytes));
+                    #else
+                    BitmapData.fromBytes(ByteArray.fromBytes(bytes), null, callback);
+                    #end
 				}
 				r.request();
 			#end
