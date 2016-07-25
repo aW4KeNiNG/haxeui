@@ -71,15 +71,15 @@ class StyleHelper {
 					if (style.gradientType != null) {
 						gradientType = style.gradientType;
 					}
-					
+
 					if (gradientType == "vertical") {
-						matrix.createGradientBox(w - 2, h - 2, Math.PI / 2, 0, 0);				
-					} else if (gradientType == "horizontal") {
-						matrix.createGradientBox(w - 2, h - 2, 0, 0, 0);				
-					}
+						matrix.createGradientBox(w - 2, h - 2, Math.PI / 2, 0, 0);
+					} else if (gradientType == "horizontal" || gradientType == "radial") {
+                        matrix.createGradientBox(w - 2, h - 2, 0, 0, 0);
+                    }
 					
 					#if (!html5)
-					g.beginGradientFill(GradientType.LINEAR, 
+					g.beginGradientFill(gradientType == "radial" ? GradientType.RADIAL : GradientType.LINEAR,
 													colors,
 													alphas,
 													ratios, 
